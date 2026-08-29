@@ -5,7 +5,7 @@ about: Report a problem or bug
 title: ''
 labels: ''
 assignees: ''
--------------
+---
 
 # Bug Report
 

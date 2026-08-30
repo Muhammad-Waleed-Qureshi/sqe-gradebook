@@ -9,10 +9,12 @@ class Student:
             return 0.0
         return sum(self.scores) / len(self.scores)
 
-    def add_score(self, score):
-        if score < 0:
-            raise ValueError("Score cannot be negative")
-        self.scores.append(score)
+
+def add_score(self, score):
+    if score < 0:
+        raise ValueError("Score cannot be negative")
+    self.scores.append(score)
+
 
 class GradeBook:
     def __init__(self):
@@ -23,3 +25,4 @@ class GradeBook:
             if existing.roll_no == student.roll_no:
                 raise ValueError("Roll number already exists")
         self.students.append(student)
+

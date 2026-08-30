@@ -15,7 +15,6 @@ def add_score(self, score):
         raise ValueError("Score cannot be negative")
     self.scores.append(score)
 
-
 class GradeBook:
     def __init__(self):
         self.students = []
@@ -25,4 +24,3 @@ class GradeBook:
             if existing.roll_no == student.roll_no:
                 raise ValueError("Roll number already exists")
         self.students.append(student)
-

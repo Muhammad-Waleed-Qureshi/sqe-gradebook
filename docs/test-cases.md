@@ -2,10 +2,11 @@
 
 <style>
   table {
-    font-size: 13px;
+    font-size: 11px;
   }
   th, td {
-    padding: 6px 8px !important;
+    padding: 3px 5px !important;
+    line-height: 1.2;
   }
 </style>
 

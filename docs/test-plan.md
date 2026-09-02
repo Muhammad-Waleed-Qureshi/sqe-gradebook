@@ -1,46 +1,42 @@
-# Software Test Plan: GradeBook Module
+# Test Plan: GradeBook Module
 
 ## 1. Introduction
-This test plan defines the overall testing strategy, scope, schedule, and resources for the GradeBook Python module. The primary objective is to verify that student record management, score validation, and statistical computations comply with all functional specifications.
+This test plan outlines the testing strategy, scope, schedule, and resources for the GradeBook Python module. The goal is to verify that student records, score tracking, statistical calculations, and data validations meet all functional requirements.
 
 ## 2. Test Items
-* Source code modules: `src/gradebook/gradebook.py`
-* Test scripts and manual execution sheets located in the `tests/` and `docs/` directories.
+* `src/gradebook/gradebook.py` (`Student` class, score management, and average calculations).
 
 ## 3. Features to be Tested
-* Student profile initialization (`name`, `roll_no`, and score attributes).
-* Score management (`add_score()` with valid numbers, positive/negative validation, and boundary checks).
-* Statistical processing (`average()` calculation for scores, handling single elements and empty lists).
-* Data integrity rules (preventing duplicate roll numbers).
-* Grade-letter mapping and boundary logic.
+* Adding valid, negative, and non-numeric scores.
+* Computing averages (normal, empty list, single score).
+* Preventing duplicate roll numbers.
+* Case-insensitive name searching (`find_student`).
+* Score boundary checks (0 and 100).
+* Letter-grade conversions.
 
-## 4. Features Not to be Tested (Exclusions)
-* **Graphical User Interface (GUI) / Web Interface:** Out of scope. GradeBook is strictly designed as a core logic Python library module rather than a standalone desktop or web application, meaning no UI components require visual verification.
-* **Database Persistence Layer:** Out of scope for this phase since student records are currently managed through in-memory data structures.
+## 4. Features Not to be Tested
+* **User Interface (UI):** Out of scope because GradeBook is designed as an underlying backend library/module, not a user-facing GUI application.
 
-## 5. Test Approach
-Testing will utilize a combination of black-box functional testing, boundary value analysis, and error-guessing. Test cases will be executed manually against the codebase, mapped directly through the Requirements Traceability Matrix (`docs/rtm.md`), and tracked using GitHub Issues for any failures.
+## 5. Approach
+* Manual execution of 12 planned test cases covering functional, boundary, and error-path scenarios. Deficiencies will be tracked via GitHub Issues.
 
-## 6. Pass/Fail Criteria
-* **Pass Criteria:** At least **95%** of the planned test cases in the execution suite must yield a `Pass` result, and zero **Critical** or **High** severity defects may remain open in the issue tracker.
-* **Fail Criteria:** Testing is deemed a failure if core validation checks fail or if any critical runtime crash occurs during normal usage paths.
+## 6. Item Pass/Fail Criteria
+* 100% of planned test cases must be executed.
+* Zero Critical or High (P1) defects may remain open for release approval.
 
 ## 7. Test Deliverables
-* Test Plan document (`docs/test-plan.md`)
-* Detailed Test Cases table (`docs/test-cases.md`)
-* Requirements Traceability Matrix (`docs/rtm.md`)
-* Bug reports and automated/manual execution logs on GitHub.
+* `docs/test-plan.md`
+* `docs/test-cases.md`
+* `docs/rtm.md`
+* `docs/triage-log.md`
+* GitHub Issue logs and PR records.
 
 ## 8. Environmental Needs
-* Python 3.10+ runtime environment installed locally or within the development container.
-* VS Code code editor with Git integration.
-* GitHub platform access for issue tracking, project boards, and pull requests.
+* Python 3.10+ execution environment locally in VS Code.
 
 ## 9. Schedule
-* **Test Plan & Test Case Authoring:** Day 1
-* **Manual Execution Pass:** Day 2
-* **Defect Filing and Regression Verification:** Day 3
+* Execution and triage performed during the Lab 4 sprint cycle.
 
-## 10. Risks and Contingencies
-* **Risk:** Floating-point rounding discrepancies during statistical average calculations.
-* **Mitigation:** Incorporate strict boundary value test cases to verify decimal precision output.
+## 10. Risks and Mitigation
+* **Risk:** Missing core implementation methods causing test blocks. 
+* **Mitigation:** Documenting defects immediately via GitHub Issues and prioritizing critical paths.

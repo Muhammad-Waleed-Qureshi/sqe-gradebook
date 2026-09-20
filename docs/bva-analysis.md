@@ -53,28 +53,46 @@ test and the expected results.
 
 ---
 
-## 4. Defect Found via BVA
+## 4. Defect Found During Testing
 
-During BVA of `validate_name`, the boundary test for length 51 initially
-failed because the original implementation used `< 50` instead of
-`<= 50`. This was a genuine off-by-one defect.
+While reviewing GradeBook for test coverage during Lab 6, a defect was
+identified in the `Student` class: the `get_grade()` method was missing
+entirely. This meant students had no way to obtain a letter grade derived
+from their stored scores, even though the `letter_grade()` function already
+existed at module level.
 
-- **Detected by:** `test_validate_name_length_boundaries["A"+ "b"*50 — False]`
-- **Fix:** Changed condition to `if len(cleaned) > 50` — see commit.
-- **Regression coverage:** The same boundary test now passes.
+This was filed as **issue #15** and fixed via **PR #17** on a feature branch
+named `fix/get-grade-method`, using the standard Lab 2 branching workflow.
+
+- **Detected by:** manual coverage review combined with EP + BVA test design
+- **Filed as:** issue #15 — "Defect: Student object missing get_grade() method"
+- **Fixed via:** PR #17 — `fix(student): add get_grade() method — Fixes #15`
+- **Branch:** `fix/get-grade-method`
+- **Regression coverage:** `tests/test_get_grade.py` (8 cases covering all
+  letter-grade boundaries F/D/C/B/A and the empty-scores edge case, all passing)
+- **Auto-closed:** Merging PR #17 automatically closed issue #15 via the
+  `Fixes #15` keyword.
 
 ---
 
 ## 5. EP + BVA Combined Suite — Final Status
 
 
-tests/test_letter_grade.py 7 passed
-tests/test_letter_grade_bva.py 18 passed
-tests/test_roster.py 9 passed
-tests/test_validate_name.py 10 passed
+tests/test_letter_grade.py 7 passed (Lab 5 EP)
+tests/test_letter_grade_bva.py 18 passed (Lab 6 BVA)
+tests/test_roster.py 9 passed (Lab 5 EP + Lab 6 BVA)
+tests/test_validate_name.py 10 passed (Lab 5 EP + Lab 6 BVA)
+tests/test_get_grade.py 8 passed (regression, issue #15)
 
-Total: 44 passed in <1s
+Total: 52 passed
 
-- **EP tests** ensure each equivalence class works.
+
+- **EP tests** ensure each equivalence class works correctly.
+- **BVA tests** ensure boundaries between classes are correct (off-by-one
+  protection).
+- **Regression test** locks in the fix for the missing `get_grade()` defect.
+
+Together they provide strong, layered coverage for the three functions under
+test plus the `Student` class.
 - **BVA tests** ensure boundaries between classes are correct.
 - Together they provide strong coverage for the three functions under test.

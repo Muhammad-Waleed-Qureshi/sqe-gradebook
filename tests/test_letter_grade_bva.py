@@ -67,4 +67,4 @@ def test_letter_grade_boundary_C_B(score, expected):
 def test_letter_grade_boundary_B_A(score, expected):
     assert letter_grade(score) == expected
 
-Counts: 6 + 3 + 3 + 3 + 3 = 18 boundary test cases (Lab 6 requires ≥15).
+

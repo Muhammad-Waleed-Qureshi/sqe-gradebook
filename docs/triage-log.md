@@ -7,8 +7,8 @@
 | 1 | #3 | `average()` crashes with an empty score list | High | P1 | Fix this sprint | Closed |
 | 2 | #4 | Negative scores are accepted | High | P1 | Fix this sprint | Closed |
 | 3 | #5 | Duplicate roll numbers are allowed | Medium | P2 | Fix this sprint | Closed |
-| 4 | #6 | Average calculation uses incorrect rounding | Medium | P2 | Defer this sprint | Wontfix |
-| 5 | #7 | Student name comparison is case-sensitive | Low | P3 | Defer this sprint | Wontfix |
+| 4 | #6 | Average calculation uses incorrect rounding | Medium | P2 | Defer this sprint | wontfix |
+| 5 | #7 | Student name comparison is case-sensitive | Low | P3 | Defer this sprint | wontfix |
 
 ---
 

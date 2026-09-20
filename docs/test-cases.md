@@ -33,3 +33,33 @@
 | Missing `Student.add_score()` | TC-001, TC-002, TC-003, TC-009, TC-010 | #13 |
 | Missing `GradeBook.find_student()` | TC-008 | #14 |
 | Missing `Student.get_grade()` | TC-011, TC-012 | #15 |
+
+
+## Re-execution Note (after Lab 5 + Lab 6)
+
+After implementing `add_score()` (Lab 5) and `get_grade()` (Lab 6,
+issue #15 → PR #17), the following test cases were re-executed against
+the updated codebase and now pass:
+
+| TC ID | Old Result | New Result |
+| :--- | :--- | :--- |
+| TC-001 | FAIL | **PASS** |
+| TC-002 | FAIL | **PASS** |
+| TC-009 | FAIL | **PASS** |
+| TC-010 | FAIL | **PASS** |
+| TC-011 | FAIL | **PASS** |
+| TC-012 | FAIL | **PASS** |
+
+**Still failing:**
+- **TC-003** — `add_score()` does not validate non-numeric input (raises `TypeError` instead of `ValueError`). Tracked as a follow-up defect.
+- **TC-008** — `GradeBook.find_student()` is still not implemented. Tracked as issue #14.
+
+**Updated Execution Summary (post-fix):**
+
+| Status | Count |
+| :--- | :--- |
+| Pass | 9 |
+| Fail | 2 |
+| Blocked | 1 |
+| **Total** | **12** |
+

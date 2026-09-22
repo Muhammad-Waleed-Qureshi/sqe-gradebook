@@ -9,16 +9,15 @@ class Student:
             return 0.0
         return sum(self.scores) / len(self.scores)
 
-
     def get_grade(self):
         """Return the letter grade for this student's average score."""
         return letter_grade(self.average())
-    
-    def add_score(self, score):
-        if score < 0:
-            raise ValueError("Score cannot be negative")
-        self.scores.append(score)
 
+    def add_score(self, score):
+        if score < 0 or score > 100:
+            raise ValueError("Score must be between 0 and 100")
+
+        self.scores.append(score)
 
 class GradeBook:
     def __init__(self):

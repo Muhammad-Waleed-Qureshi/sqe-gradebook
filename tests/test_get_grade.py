@@ -10,14 +10,14 @@ from gradebook.gradebook import Student
 # Student.get_grade() should return the letter grade for the average.
 
 @pytest.mark.parametrize("scores,expected_grade", [
-    ([], "F"),              # empty -> average 0.0 -> F
+    ([], "F"),
     ([45], "F"),
     ([65], "D"),
     ([75], "C"),
     ([85], "B"),
     ([95], "A"),
-    ([90, 92, 88], "A"),    # average 90 -> A
-    ([59, 61], "D"),        # average 60 -> D
+    ([90, 92, 88], "A"),
+    ([59, 61], "D"),
 ])
 def test_student_get_grade(scores, expected_grade):
     s = Student("Ali", 101)

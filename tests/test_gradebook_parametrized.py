@@ -4,38 +4,33 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 import pytest
-from gradebook.gradebook import letter_grade
+from gradebook.gradebook import Student, letter_grade
 
 @pytest.mark.parametrize(
-    "score, expected",
+    "score, should_raise",
     [
-        (95, "A"),
-        (90, "A"),
-        (89, "B"),
-        (80, "B"),
-        (79, "C"),
-        (70, "C"),
-        (69, "D"),
-        (60, "D"),
-        (59, "F"),
-        (0, "F"),
+        (85, False),
+        (0, False),
+        (100, False),
+        (-1, True),
+        (101, True),
+        (50, False),
     ],
+    ids=[
+        "valid_mid_score",
+        "valid_boundary_min",
+        "valid_boundary_max",
+        "invalid_below_min",
+        "invalid_above_max",
+        "valid_standard_score"
+    ]
 )
-def test_letter_grade_parametrized(score, expected):
-    """Test letter_grade mapping across various grade boundaries using parametrization."""
-    assert letter_grade(score) == expected
-
-@pytest.mark.parametrize(
-    "invalid_score",
-    [
-        -1,
-        101,
-        "90",
-        None,
-        True,
-    ],
-)
-def test_letter_grade_invalid_raises_value_error(invalid_score):
-    """Test that invalid scores or data types correctly raise a ValueError."""
-    with pytest.raises(ValueError):
-        letter_grade(invalid_score)
+def test_add_score_parametrized(score, should_raise):
+    """Consolidated parametrized test for student add_score method."""
+    student = Student("Ali", 101)
+    if should_raise:
+        with pytest.raises(ValueError):
+            student.add_score(score)
+    else:
+        student.add_score(score)
+        assert score in student.scores

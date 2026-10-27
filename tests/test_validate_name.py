@@ -27,7 +27,8 @@ def test_invalid_names(bad):
 # Rule: length 1–50 (after strip), letters/spaces/hyphens only.
 
 @pytest.mark.parametrize("name,should_pass", [
-    ("", False),                # length 0 -> invalid
+    ("", False),
+    ("  ", False),                # length 0 -> invalid
     ("A", True),                # length 1 (min)
     ("A" + "b" * 48, True),     # length 49 (max-1)
     ("A" + "b" * 49, True),     # length 50 (max)

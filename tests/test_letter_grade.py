@@ -7,6 +7,7 @@ from gradebook.gradebook import letter_grade
 
 
 @pytest.mark.parametrize("score,expected", [
+    (0, "F"),
     (45, "F"),
     (65, "D"),
     (75, "C"),

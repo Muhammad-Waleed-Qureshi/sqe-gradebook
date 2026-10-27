@@ -1,3 +1,8 @@
+from importlib.resources import path
+
+class GradeBookIOError(Exception):
+    """Raised when saving the roster fails."""
+
 class Student:
     def __init__(self, name, roll_no):
         self.name = name
@@ -10,7 +15,6 @@ class Student:
         return sum(self.scores) / len(self.scores)
 
     def get_grade(self):
-        """Return the letter grade for this student's average score."""
         return letter_grade(self.average())
 
     def add_score(self, score):
@@ -30,10 +34,9 @@ class GradeBook:
         self.students.append(student)
 
 
-# ---------- Lab 5 additions ----------
 
 def letter_grade(score):
-    """Map a numeric score (0-100) to a letter grade A-F."""
+   
     if not isinstance(score, (int, float)) or isinstance(score, bool):
         raise ValueError("Score must be a number")
     if score < 0 or score > 100:
@@ -50,7 +53,6 @@ def letter_grade(score):
 
 
 def validate_name(name):
-    """Validate a student name: non-empty, <=50 chars, letters/spaces/hyphens only."""
     if not isinstance(name, str):
         raise ValueError("Name must be a string")
     cleaned = name.strip()
@@ -65,7 +67,6 @@ def validate_name(name):
 
 
 class Roster:
-    """A collection of students; each must have 1-6 scores."""
 
     def __init__(self):
         self.students = []
@@ -77,3 +78,29 @@ class Roster:
         if n < 1 or n > 6:
             raise ValueError("Student must have between 1 and 6 scores")
         self.students.append(student)
+
+    
+    def save_to_file(self, path):
+        try:
+            file = open(path, "w", encoding="utf-8")
+
+            for student in self.students:
+                file.write(f"{student.name},{student.roll_no}\n")
+
+            file.close()
+
+        except OSError as exc:
+                raise GradeBookIOError("Could not save roster") from exc
+
+        
+    def class_average(self):
+        if not self.students:
+            return 0.0
+
+        total = 0
+
+        for student in self.students:
+            total += student.average()
+
+        return total / len(self.students)
+

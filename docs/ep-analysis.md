@@ -64,6 +64,7 @@ tests/test_letter_grade.py::test_letter_grade_valid_classes[65-D] PASSED
 tests/test_letter_grade.py::test_letter_grade_valid_classes[75-C] PASSED
 tests/test_letter_grade.py::test_letter_grade_valid_classes[85-B] PASSED
 tests/test_letter_grade.py::test_letter_grade_valid_classes[95-A] PASSED
+tests/test_letter_grade.py::test_letter_grade_valid_classes[0-F] PASSED
 tests/test_letter_grade.py::test_letter_grade_invalid_classes[-10] PASSED
 tests/test_letter_grade.py::test_letter_grade_invalid_classes[150] PASSED
 

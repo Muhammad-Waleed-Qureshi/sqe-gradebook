@@ -1,7 +1,14 @@
+
 from importlib.resources import path
 
 class GradeBookIOError(Exception):
     """Raised when saving the roster fails."""
+=======
+class GradeBookIOError(Exception):
+    """Custom exception raised for file I/O failures in the GradeBook system."""
+    pass
+
+
 
 class Student:
     def __init__(self, name, roll_no):
@@ -20,6 +27,9 @@ class Student:
     def add_score(self, score):
         if score < 0 or score > 100:
             raise ValueError("Score must be between 0 and 100")
+
+        self.scores.append(score)
+
 
         self.scores.append(score)
 
@@ -79,6 +89,7 @@ class Roster:
             raise ValueError("Student must have between 1 and 6 scores")
         self.students.append(student)
 
+
     
     def save_to_file(self, path):
         try:
@@ -103,4 +114,21 @@ class Roster:
             total += student.average()
 
         return total / len(self.students)
+
+
+    def class_average(self):
+        """Calculate the average of all students' averages in the roster[cite: 5]."""
+        if not self.students:
+            return 0.0
+        total = sum(student.average() for student in self.students)
+        return total / len(self.students)
+
+    def save_to_file(self, path):
+        """Write student records to disk, raising GradeBookIOError on failure[cite: 5]."""
+        try:
+            with open(path, "w") as f:
+                for student in self.students:
+                    f.write(f"{student.roll_no},{student.name},{student.average()}\n")
+        except OSError as e:
+            raise GradeBookIOError(f"Failed to save roster to file: {e}") from e
 

@@ -8,6 +8,7 @@ import pytest
 from gradebook.gradebook import Student
 
 
+
 @pytest.mark.parametrize(
     "score, should_pass",
     [
@@ -36,3 +37,25 @@ def test_add_score(score, should_pass):
     else:
         with pytest.raises(ValueError):
             student.add_score(score)
+
+def test_add_score_rejects_score_above_100():
+    student = Student("Ali", 101)
+
+    with pytest.raises(ValueError):
+        student.add_score(101)
+
+
+def test_add_score_rejects_negative_score():
+    student = Student("Ali", 101)
+
+    with pytest.raises(ValueError):
+        student.add_score(-1)
+
+
+def test_add_score_accepts_valid_score():
+    student = Student("Ali", 101)
+
+    student.add_score(100)
+
+    assert student.scores == [100]
+

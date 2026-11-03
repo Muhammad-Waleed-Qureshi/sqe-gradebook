@@ -5,7 +5,7 @@ computing grade statistics. It stores students with a name and roll number,
 tracks their scores, and provides utilities to compute averages, convert
 numeric averages to letter grades, validate name inputs, and enforce roster
 rules. The project is developed as part of the Software Quality Engineering
-(SUE) lab series and grows one SQE discipline at a time — from repository
+(SQE) lab series and grows one SQE discipline at a time — from repository
 setup and branching (Labs 1–2), through defect management and test planning
 (Labs 3–4), to black-box test design using Equivalence Partitioning and
 Boundary Value Analysis (Labs 5–6).
